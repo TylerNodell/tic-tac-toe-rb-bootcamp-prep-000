@@ -32,10 +32,10 @@ def move(array, index, value)
 end
 
 def position_taken?(board, index)
-  board[index] == "X" || board[index] == "O"
+  index = board[index]
   if index == "X" || ind == "O"
     return true
-  elsif ind == " " || ind == "" || ind == nil
+  elsif index == " " || ind == "" || ind == nil
     return false
   end
 end
