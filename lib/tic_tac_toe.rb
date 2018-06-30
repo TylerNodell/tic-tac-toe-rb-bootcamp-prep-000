@@ -52,9 +52,10 @@ end
 def turn(board)
   puts "Please enter 1-9:"
   input = gets.chomp
+  turn = current_player(board)
   index = input_to_index(input)
   if valid_move?(board, index) == true
-    move(board, index)
+    move(board, index, turn)
     display_board(board)
     if position_taken?(board[index]) == false && index.between?(0, 8)
       return true
