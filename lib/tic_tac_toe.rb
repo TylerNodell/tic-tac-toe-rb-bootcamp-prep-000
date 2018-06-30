@@ -66,6 +66,10 @@ def turn(board)
   end
 end
 
+def turn_count(board)
+  board.count{|counter| counter == "X" || counter == "O"}
+end
+
 def won?(board)
   WIN_COMBINATIONS.detect{|combination|
       board[combination[0]] == board[combination[1]] && board[combination[1]] == board[combination[2]] && position_taken?(board, combination[0])
