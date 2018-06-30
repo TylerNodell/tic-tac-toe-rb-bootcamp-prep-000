@@ -40,6 +40,16 @@ def position_taken?(board, index)
   end
 end
 
+def valid_move?(board, index)
+  if position_taken?(board[index]) == false && index.between?(0, 8)
+    return true
+  elsif position_taken?(board[index]) == true
+    return false
+  else
+    return false
+  end
+end
+
 def won?(board)
   WIN_COMBINATIONS.detect{|combination|
       board[combination[0]] == board[combination[1]] && board[combination[1]] == board[combination[2]] && position_taken?(board, combination[0])
