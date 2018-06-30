@@ -52,17 +52,16 @@ end
 def turn(board)
   puts "Please enter 1-9:"
   input = gets.chomp
-  turn = current_player(board)
   index = input_to_index(input)
   if valid_move?(board, index) == true
-    move(board, index, turn)
+    move(board, index, current_player(board))
     display_board(board)
     if position_taken?(board, index) == false && index.between?(0, 8)
       return true
     elsif position_taken?(board, index) == true
         return false
     else
-        return false
+        turn(board)
       end
   end
 end
@@ -109,5 +108,16 @@ def current_player(board)
     return "X"
   else
     return "O"
+  end
+end
+
+def play(board)
+  until over?(board) == true
+    turn(board)
+  end
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?(board)
+    puts "Cat's Game"
   end
 end
