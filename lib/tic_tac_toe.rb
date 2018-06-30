@@ -32,8 +32,8 @@ def move(array, index, value)
 end
 
 def position_taken?(board, index)
-  ind = board[index]
-  if ind == "X" || ind == "O"
+  board[index] == "X" || board[index] == "O"
+  if index == "X" || ind == "O"
     return true
   elsif ind == " " || ind == "" || ind == nil
     return false
