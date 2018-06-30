@@ -15,6 +15,31 @@ WIN_COMBINATIONS = [
   [6,4,2]
 ]
 
+def display_board(board)
+  puts " #{board[0]} | #{board[1]} | #{board[2]} "
+  puts "-----------"
+  puts " #{board[3]} | #{board[4]} | #{board[5]} "
+  puts "-----------"
+  puts " #{board[6]} | #{board[7]} | #{board[8]} "
+end
+
+def input_to_index(input)
+  input.to_i - 1
+end
+
+def move(array, index, value = "X")
+  array[index] = value
+end
+
+def position_taken?(board, index)
+  ind = board[index]
+  if ind == "X" || ind == "O"
+    return true
+  elsif ind == " " || ind == "" || ind == nil
+    return false
+  end
+end
+
 def won?(board)
   WIN_COMBINATIONS.detect{|combination|
       board[combination[0]] == board[combination[1]] && board[combination[1]] == board[combination[2]] && position_taken?(board, combination[0])
@@ -36,5 +61,21 @@ end
 def winner(board)
   if combo = won?(board)
     board[combo[0]]
+  end
+end
+
+def turn_count(board)
+  counter = 0
+  board.each{|slot| if slot != " "
+    counter += 1
+  end }
+  counter
+end
+
+def current_player(board)
+  if turn_count(board) % 2 == 0
+    return "X"
+  else
+    return "O"
   end
 end
